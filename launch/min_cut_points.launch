@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<launch>
+    <arg name="MaxIter" default="200" />
+    <arg name="Dist" default="0.1" />
+    <arg name="Prob" default="0.95" />
+    <arg name="Sigma" default="0.25" />
+    <arg name="Radius" default="1" />
+    <arg name="NoN" default="14" />
+    <arg name="SourceWeight" default="0.8" />
+    <arg name="remove_plane" default="2" />
+    <node pkg="min_cut_ros" type="min_cut_ros" name="min_cut_ros" output="screen">
+        <remap from="/sub_pointcloud" to="/phoxi_camera/pointcloud" />
+        <remap from="/pub_pointcloud" to="/min_cut_pointcloud" />
+        <remap from="/repub_frame" to="/map" />
+        <param name="MaxIter" value="$(arg MaxIter)" />
+        <param name="Dist" value="$(arg Dist)"  />
+        <param name="Prob" value="$(arg Prob)" />
+        <param name="Sigma" value="$(arg Sigma)" />
+        <param name="Radius" value="$(arg Radius)" />
+        <param name="NoN" value="$(arg NoN)" />
+        <param name="SourceWeight" value="$(arg SourceWeight)" />
+        <param name="remove_plane" value="$(arg remove_plane)" />
+    </node>
+</launch>
